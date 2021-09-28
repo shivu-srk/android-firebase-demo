@@ -7,6 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ViewRequestListAdapter: RecyclerView.Adapter<ViewRequestListAdapter.ViewRequestViewHolder>() {
+    var list: List<String> = listOf()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
+
     inner class ViewRequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
     }
@@ -17,10 +23,9 @@ class ViewRequestListAdapter: RecyclerView.Adapter<ViewRequestListAdapter.ViewRe
     }
 
     override fun onBindViewHolder(holder: ViewRequestViewHolder, position: Int) {
-        holder.textView.text = "Hi"
+        holder.textView.text = list[position]
     }
 
-    override fun getItemCount(): Int = 0
-
+    override fun getItemCount(): Int = list.size
 
 }

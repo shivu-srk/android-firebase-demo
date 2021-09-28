@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -23,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
         val addressText = findViewById<EditText>(R.id.addr)
         val aadhaarText = findViewById<EditText>(R.id.aadhar)
         val button = findViewById<Button>(R.id.button)
-
+        val container = findViewById<LinearLayout>(R.id.container)
         val db = Firebase.firestore
         val user = Firebase.auth.currentUser
 
@@ -33,10 +35,12 @@ class DetailsActivity : AppCompatActivity() {
                 .get()
                 .addOnSuccessListener { snapshot ->
                     val name = snapshot["name"]
-                    val addr = snapshot["addr"]
+                    val addr = snapshot["address"]
                     val aadhaar = snapshot["aadhaar"]
                     if(listOf(name, addr, aadhaar).all { it != null }) {
                         dashboard()
+                    } else {
+                        container.isVisible = true
                     }
                 }
                 .addOnFailureListener {

@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             details()
         }
 
+        println(FirebaseAuth.getInstance().currentUser)
+
         otp.visibility = View.GONE
         button.text = "SEND OTP"
 

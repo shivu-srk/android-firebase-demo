@@ -15,7 +15,7 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val viewRequest = findViewById<Button>(R.id.menu1)
+        val viewRequest = findViewById<Button>(R.id.menu2)
 
         viewRequest.setOnClickListener {
             requests()
